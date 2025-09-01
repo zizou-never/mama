@@ -1,8 +1,8 @@
 // app.js
 
 // 1. Configuration de la connexion à Supabase
-const SUPABASE_URL = https: '//cmaayaqnvfypfgycikhg.supabase.co' ;
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtYWF5YXFudmZ5cGZneWNpa2hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2ODAwMTUsImV4cCI6MjA3MjI1NjAxNX0.8wef9CTaj113EXb1LajGLinrRKUOfxVn-q0ECBGs20s';
+const SUPABASE_URL = '%VITE_https: //cmaayaqnvfypfgycikhg.supabase.co_URL%' ;
+const SUPABASE_ANON_KEY = '%VITE_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtYWF5YXFudmZ5cGZneWNpa2hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2ODAwMTUsImV4cCI6MjA3MjI1NjAxNX0.8wef9CTaj113EXb1LajGLinrRKUOfxVn-q0ECBGs20s_URL%';
 
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
