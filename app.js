@@ -1,11 +1,13 @@
 // app.js
 
 // 1. Configuration de la connexion à Supabase
-const SUPABASE_URL = '%VITE_https: //cmaayaqnvfypfgycikhg.supabase.co_URL%' ;
-const SUPABASE_ANON_KEY = '%VITE_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtYWF5YXFudmZ5cGZneWNpa2hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2ODAwMTUsImV4cCI6MjA3MjI1NjAxNX0.8wef9CTaj113EXb1LajGLinrRKUOfxVn-q0ECBGs20s_URL%';
+// هذه هي الطريقة الصحيحة. الكود يحتوي فقط على أسماء المتغيرات.
+// Vercel سيقوم باستبدالها بالقيم الحقيقية أثناء النشر.
+const SUPABASE_URL = '%VITE_SUPABASE_URL%';
+const SUPABASE_ANON_KEY = '%VITE_SUPABASE_ANON_KEY%';
 
+// تم تصحيح هذا السطر: نستخدم كائن "supabase" العام لإنشاء العميل
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
 
 
 // 2. Références aux éléments du DOM
@@ -27,18 +29,15 @@ let isAnswerChecked = false;
 
 // 4. Fonction pour récupérer un QCM aléatoire
 async function fetchRandomQCM() {
-    // Afficher le loader et cacher le contenu
-    qcmLoader.classList.remove('hidden');
+    qLoader.classList.remove('hidden');
     qcmContent.classList.add('hidden');
     resetState();
 
-    // RPC (Remote Procedure Call) pour appeler une fonction SQL qui choisit une ligne au hasard.
-    // C'est plus efficace que de télécharger toute la table.
     const { data, error } = await supabase.rpc('get_random_qcm');
 
     if (error || !data || data.length === 0) {
         console.error("Erreur lors de la récupération du QCM:", error);
-        qcmQuestion.textContent = "Impossible de charger la question. Veuillez réessayer.";
+        qcmQuestion.textContent = "Impossible de charger la question. Vérifiez la console pour les erreurs.";
         qcmLoader.classList.add('hidden');
         qcmContent.classList.remove('hidden');
         return;
@@ -54,13 +53,16 @@ function displayQCM(qcm) {
     qcmQuestion.textContent = qcm.question;
     
     qcmOptions.innerHTML = '';
-    qcm.options.forEach(optionText => {
-        const button = document.createElement('button');
-        button.className = 'option-btn';
-        button.textContent = optionText;
-        button.addEventListener('click', () => selectOption(button, optionText));
-        qcmOptions.appendChild(button);
-    });
+    // التأكد من أن الخيارات هي بالفعل قائمة (array)
+    if (Array.isArray(qcm.options)) {
+        qcm.options.forEach(optionText => {
+            const button = document.createElement('button');
+            button.className = 'option-btn';
+            button.textContent = optionText;
+            button.addEventListener('click', () => selectOption(button, optionText));
+            qcmOptions.appendChild(button);
+        });
+    }
 
     qcmLoader.classList.add('hidden');
     qcmContent.classList.remove('hidden');
@@ -68,12 +70,10 @@ function displayQCM(qcm) {
 
 // 6. Fonction pour gérer la sélection d'une option
 function selectOption(button, optionText) {
-    if (isAnswerChecked) return; // Ne rien faire si la réponse a déjà été vérifiée
+    if (isAnswerChecked) return;
 
-    // Retirer la sélection des autres boutons
     document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
     
-    // Ajouter la sélection au bouton cliqué
     button.classList.add('selected');
     selectedOption = optionText;
     checkAnswerBtn.disabled = false;
@@ -91,15 +91,18 @@ function checkAnswer() {
     qcmFeedback.classList.toggle('incorrect', !correct);
     feedbackText.textContent = correct ? "Félicitations ! C'est la bonne réponse." : `Désolé, la bonne réponse était : ${currentQCM.correct_answer}`;
     
-    qcmExplanation.textContent = currentQCM.explanation;
-    
-    // Mettre en évidence les bonnes et mauvaises réponses
+    if (currentQCM.explanation) {
+        document.getElementById('explanation-box').classList.remove('hidden');
+        qcmExplanation.textContent = currentQCM.explanation;
+    }
+
     document.querySelectorAll('.option-btn').forEach(btn => {
         if (btn.textContent === currentQCM.correct_answer) {
             btn.classList.add('correct');
         } else if (btn.classList.contains('selected')) {
             btn.classList.add('incorrect');
         }
+        btn.disabled = true; // تعطيل جميع الخيارات بعد التحقق
     });
 
     nextQcmBtn.classList.remove('hidden');
@@ -112,9 +115,9 @@ function resetState() {
     isAnswerChecked = false;
     
     checkAnswerBtn.disabled = true;
-    checkAnswerBtn.classList.remove('hidden');
     nextQcmBtn.classList.add('hidden');
     qcmFeedback.classList.add('hidden');
+    document.getElementById('explanation-box').classList.add('hidden');
 }
 
 // 9. Ajout des écouteurs d'événements
@@ -122,8 +125,4 @@ checkAnswerBtn.addEventListener('click', checkAnswer);
 nextQcmBtn.addEventListener('click', fetchRandomQCM);
 
 // 10. Lancement initial
-// Avant de lancer, nous devons créer la fonction SQL dans Supabase !
-// Allez à Supabase -> Database -> SQL Editor -> New Query
-// Copiez-collez le code SQL de l'étape suivante et cliquez sur "RUN".
-// Après cela, le site fonctionnera.
 fetchRandomQCM();
