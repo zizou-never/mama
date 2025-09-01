@@ -1,5 +1,5 @@
 // ===============================================
-//           CODE JAVASCRIPT POUR APP.JS
+//           CODE JAVASCRIPT FINAL POUR APP.JS
 // ===============================================
 
 // 1. Configuration de la connexion à Supabase
@@ -21,9 +21,6 @@ const qcmFeedback = document.getElementById('qcm-feedback');
 const feedbackText = document.getElementById('feedback-text');
 const qcmExplanation = document.getElementById('qcm-explanation');
 const explanationBox = document.getElementById('explanation-box');
-
-// ... (بقية الكود كما هو في الإجابات السابقة)
-// ... (سأضع الكود كاملاً لضمان عدم وجود أخطاء)
 
 // 3. Variables pour gérer l'état
 let currentQCM = null;
