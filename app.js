@@ -1,9 +1,7 @@
-// Initialisation de Supabase
 const supabaseUrl = "https://xfpkiowdevrrhsaundrz.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmcGtpb3dkZXZycmhzYXVuZHJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3Mjk2MDYsImV4cCI6MjA3MjMwNTYwNn0.Lqqyo1asUKQl5AK9AElS1xwlAjLVG9uP20z2lr_wzn8";
-const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+const supabaseAnonKey = "CLE_API";
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-// Éléments DOM
 const loadingSection = document.getElementById('loading-section');
 const contentSection = document.getElementById('content-section');
 const moduleTag = document.getElementById('module-tag');
@@ -16,176 +14,106 @@ const feedbackText = document.getElementById('feedback-text');
 const explanationSection = document.getElementById('explanation-section');
 const explanationText = document.getElementById('explanation-text');
 
-// Variables d'état
 let currentQuestion = null;
 let selectedOption = null;
 let isAnswerChecked = false;
 
-// Charger une question aléatoire
 async function loadRandomQuestion() {
-    try {
-        // Afficher le loader
-        loadingSection.style.display = 'flex';
-        contentSection.style.display = 'none';
-        resetState();
+  showLoader();
+  resetState();
 
-        // Récupérer toutes les questions
-        const { data, error } = await supabase
-            .from('qcm')
-            .select('*');
+  try {
+    const { data, error } = await supabaseClient
+      .from("qcm")
+      .select("*")
+      .order("random()")
+      .limit(1);
 
-        if (error) {
-            throw new Error(`Erreur de base de données: ${error.message}`);
-        }
+    if (error || !data.length) throw "Base vide ou erreur";
 
-        if (!data || data.length === 0) {
-            throw new Error('Aucune question trouvée dans la base de données');
-        }
-
-        // Choisir une question aléatoire
-        const randomIndex = Math.floor(Math.random() * data.length);
-        currentQuestion = data[randomIndex];
-
-        // Afficher la question
-        displayQuestion(currentQuestion);
-    } catch (error) {
-        console.error('Erreur:', error);
-        showFallbackQuestion();
-    }
-}
-
-// Afficher la question
-function displayQuestion(question) {
-    moduleTag.textContent = question.module;
-    questionTitle.textContent = question.question;
-
-    // Nettoyer les options précédentes
-    optionsContainer.innerHTML = '';
-
-    // Créer les boutons d'options
-    if (Array.isArray(question.options)) {
-        question.options.forEach((option, index) => {
-            const button = document.createElement('button');
-            button.className = 'option-button';
-            button.textContent = option;
-            button.addEventListener('click', () => selectOption(button, option));
-            optionsContainer.appendChild(button);
-        });
-    } else {
-        // Si les options ne sont pas un tableau, créer des options par défaut
-        ['Option A', 'Option B', 'Option C', 'Option D'].forEach((option, index) => {
-            const button = document.createElement('button');
-            button.className = 'option-button';
-            button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
-            button.addEventListener('click', () => selectOption(button, option));
-            optionsContainer.appendChild(button);
-        });
-    }
-
-    // Masquer le loader et afficher le contenu
-    loadingSection.style.display = 'none';
-    contentSection.style.display = 'block';
-}
-
-// Sélectionner une option
-function selectOption(button, option) {
-    if (isAnswerChecked) return;
-
-    // Désélectionner toutes les autres options
-    document.querySelectorAll('.option-button').forEach(btn => {
-        btn.classList.remove('selected');
-    });
-
-    // Sélectionner cette option
-    button.classList.add('selected');
-    selectedOption = option;
-    checkAnswerBtn.disabled = false;
-}
-
-// Vérifier la réponse
-function checkAnswer() {
-    if (!selectedOption || !currentQuestion) return;
-
-    isAnswerChecked = true;
-    checkAnswerBtn.disabled = true;
-
-    const isCorrect = selectedOption === currentQuestion.correct_answer;
-
-    // Afficher le feedback
-    feedbackSection.classList.add('show');
-    feedbackText.textContent = isCorrect 
-        ? 'Félicitations ! C\'est la bonne réponse.' 
-        : `Désolé, la bonne réponse était : ${currentQuestion.correct_answer}`;
-
-    // Mettre en surbrillance la bonne réponse
-    document.querySelectorAll('.option-button').forEach(btn => {
-        if (btn.textContent.includes(currentQuestion.correct_answer)) {
-            btn.classList.add('correct');
-        } else if (btn.classList.contains('selected')) {
-            btn.classList.add('incorrect');
-        }
-        btn.disabled = true;
-    });
-
-    // Afficher l'explication si disponible
-    if (currentQuestion.explanation) {
-        explanationSection.classList.add('show');
-        explanationText.textContent = currentQuestion.explanation;
-    }
-
-    // Afficher le bouton "Question suivante"
-    nextQuestionBtn.style.display = 'inline-block';
-}
-
-// Passer à la question suivante
-function nextQuestion() {
-    loadRandomQuestion();
-}
-
-// Réinitialiser l'état
-function resetState() {
-    selectedOption = null;
-    isAnswerChecked = false;
-    checkAnswerBtn.disabled = true;
-    nextQuestionBtn.style.display = 'none';
-    feedbackSection.classList.remove('show');
-    explanationSection.classList.remove('show');
-}
-
-// Afficher une question de secours en cas d'erreur
-function showFallbackQuestion() {
-    const fallbackQuestions = [
-        {
-            module: "JavaScript",
-            question: "Quel mot-clé est utilisé pour déclarer une variable constante en JavaScript?",
-            options: ["var", "let", "const", "static"],
-            correct_answer: "const",
-            explanation: "Le mot-clé 'const' est utilisé pour déclarer des variables dont la valeur ne peut pas être modifiée après son assignation."
-        },
-        {
-            module: "CSS",
-            question: "Quelle propriété CSS est utilisée pour définir l'espace entre les lignes d'un texte?",
-            options: ["line-spacing", "line-height", "spacing", "text-line"],
-            correct_answer: "line-height",
-            explanation: "La propriété 'line-height' définit l'espace vertical entre les lignes de texte dans un élément."
-        },
-        {
-            module: "HTML",
-            question: "Quel attribut est utilisé pour spécifier l'URL d'une ressource externe dans une balise <script>?",
-            options: ["src", "href", "link", "url"],
-            correct_answer: "src",
-            explanation: "L'attribut 'src' (source) est utilisé pour indiquer l'emplacement du fichier JavaScript externe."
-        }
-    ];
-
-    const randomIndex = Math.floor(Math.random() * fallbackQuestions.length);
-    currentQuestion = fallbackQuestions[randomIndex];
+    currentQuestion = data[0];
     displayQuestion(currentQuestion);
+  } catch (e) {
+    console.log("→ fallback:", e);
+    showFallbackQuestion();
+  }
 }
 
-// Ajouter les écouteurs d'événements
-checkAnswerBtn.addEventListener('click', checkAnswer);
-nextQuestionBtn.addEventListener('click', nextQuestion);
+function displayQuestion(q) {
+  moduleTag.textContent = q.module;
+  questionTitle.textContent = q.question;
+  optionsContainer.innerHTML = "";
+  (Array.isArray(q.options) ? q.options : ["A","B"]).forEach(option => {
+    const btn = document.createElement("button");
+    btn.className = "option-button";
+    btn.textContent = option;
+    btn.onclick = () => selectOption(btn, option);
+    optionsContainer.appendChild(btn);
+  });
+  hideLoader();
+}
 
-// Charger la première question au démarrage
-document.addEventListener('DOMContentLoaded', loadRandomQuestion);
+function selectOption(btn, option) {
+  if (isAnswerChecked) return;
+  document.querySelectorAll(".option-button").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  selectedOption = option;
+  checkAnswerBtn.disabled = false;
+}
+
+function checkAnswer() {
+  isAnswerChecked = true;
+  checkAnswerBtn.disabled = true;
+
+  const correct = selectedOption === currentQuestion.correct_answer;
+  feedbackSection.classList.add("show", correct ? "correct" : "incorrect");
+  feedbackText.textContent = correct ? "✅ Bonne réponse !" : "❌ Mauvaise réponse...";
+
+  if (currentQuestion.explanation) {
+    explanationSection.style.display = "block";
+    explanationText.textContent = currentQuestion.explanation;
+  }
+
+  document.querySelectorAll(".option-button").forEach(btn => {
+    if (btn.textContent === currentQuestion.correct_answer) btn.classList.add("correct");
+    else if (btn.classList.contains("selected")) btn.classList.add("incorrect");
+    btn.disabled = true;
+  });
+
+  nextQuestionBtn.style.display = "block";
+}
+
+function resetState() {
+  selectedOption = null;
+  isAnswerChecked = false;
+  feedbackSection.className = "feedback-section";
+  feedbackSection.style.display = "none";
+  explanationSection.style.display = "none";
+  checkAnswerBtn.disabled = true;
+  nextQuestionBtn.style.display = "none";
+}
+
+function showLoader() {
+  loadingSection.classList.remove("hidden");
+  contentSection.classList.add("hidden");
+}
+function hideLoader() {
+  loadingSection.classList.add("hidden");
+  contentSection.classList.remove("hidden");
+}
+
+function showFallbackQuestion() {
+  currentQuestion = {
+    module: "Mode Démo",
+    question: "Quelle est la capitale de la France ?",
+    options: ["Rome", "Madrid", "Paris", "Berlin"],
+    correct_answer: "Paris",
+    explanation: "Paris est la capitale et la plus grande ville de la France."
+  };
+  displayQuestion(currentQuestion);
+}
+
+checkAnswerBtn.addEventListener("click", checkAnswer);
+nextQuestionBtn.addEventListener("click", loadRandomQuestion);
+
+document.addEventListener("DOMContentLoaded", loadRandomQuestion);
