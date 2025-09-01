@@ -3,13 +3,13 @@
 // 1. Configuration de la connexion à Supabase
 // هذه هي الطريقة الصحيحة. الكود يحتوي فقط على أسماء المتغيرات.
 // Vercel سيقوم باستبدالها بالقيم الحقيقية أثناء النشر.
-const SUPABASE_URL = '%VITE_SUPABASE_URL%';
-const SUPABASE_ANON_KEY = '%VITE_SUPABASE_ANON_KEY%';
+const SUPABASE_URL = supabase.createClient('%VITE_SUPABASE_URL%';
+const SUPABASE_ANON_KEY = '%VITE_SUPABASE_ANON_KEY%');
 
 // تم تصحيح هذا السطر: نستخدم كائن "supabase" العام لإنشاء العميل
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-
+supabase.from('your_table').select('*');
 // 2. Références aux éléments du DOM
 const qcmLoader = document.getElementById('qcm-loader');
 const qcmContent = document.getElementById('qcm-content');
