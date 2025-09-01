@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Page Esthétique</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Mon Livre d'Or</h1>
+            <p>Laissez un message ci-dessous !</p>
+        </header>
+
+        <main>
+            <form id="message-form">
+                <input type="text" id="nom" placeholder="Votre nom" required>
+                <textarea id="message" placeholder="Votre message" required></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+
+            <div id="messages-container">
+                <h2>Messages Précédents</h2>
+                <div id="messages-list">
+                    <!-- Les messages de Supabase seront affichés ici -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Intégration du client Supabase et de notre script JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
