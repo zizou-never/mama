@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact - Résidanat Constantine</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/api.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="logo">🎓</span> Résidanat Constantine</a>
+      <nav class="menu" id="menu">
+        <a href="index.html">Accueil</a>
+        <a href="formations.html">Formations</a>
+        <a href="qcm.html">QCM</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="dashboard.html" id="adminLink" class="d-none">Admin</a>
+      </nav>
+      <div class="actions">
+        <button id="themeToggle" class="icon-btn">🌓</button>
+        <a href="login.html" id="loginLink" class="btn btn-outline">Connexion</a>
+        <div id="userMenu" class="user-menu d-none">
+          <span id="userName"></span>
+          <div class="dropdown">
+            <a href="profil.html">Profil</a>
+            <button id="logoutBtn" class="link danger">Déconnexion</button>
+          </div>
+        </div>
+        <button id="burger" class="icon-btn burger">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Contactez-nous</h1>
+      <p>Une question ? Nous répondons sous 24h.</p>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="grid-2">
+      <div class="card">
+        <h3>Nous écrire</h3>
+        <form id="contactForm" class="form">
+          <label>Nom<input type="text" id="name" required></label>
+          <label>Email<input type="email" id="email" required></label>
+          <label>Message<textarea id="message" rows="5" required></textarea></label>
+          <button class="btn" type="submit">Envoyer</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>Informations</h3>
+        <p>Université de Constantine, Algérie</p>
+        <p>Email: contact@residanat-constantine.dz</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="brand"><span class="logo">🎓</span> Résidanat Constantine</div>
+      <div>© 2025</div>
+    </div>
+  </footer>
+</body>
+</html>

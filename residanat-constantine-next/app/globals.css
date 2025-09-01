@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light dark; }
+html, body { height: 100%; }
+body {
+  @apply bg-[linear-gradient(180deg,theme(colors.bg.light),theme(colors.bg.soft))] dark:bg-[linear-gradient(180deg,theme(colors.bg.DEFAULT),theme(colors.bg.soft))] text-text-light dark:text-text-dark;
+}
+
+.container { @apply w-[min(1200px,92%)] mx-auto; }
+.card { @apply bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-xl p-5 shadow-glass; }
+.btn { @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-gradient-to-br from-primary to-violet-600 text-white hover:-translate-y-0.5 transition; }
+.btn-soft { @apply bg-white/10 border border-white/20 text-white; }
+.btn-outline { @apply border border-primary text-primary rounded-lg px-3 py-2; }
+.badge { @apply text-sm px-2 py-1 rounded-full border border-white/20 bg-white/5; }
+.muted { @apply text-text-muted; }
+.grid-2 { @apply grid grid-cols-1 md:grid-cols-2 gap-4; }
+.grid-3 { @apply grid grid-cols-1 md:grid-cols-3 gap-4; }
+.grid-4 { @apply grid grid-cols-2 md:grid-cols-4 gap-4; }
+.page { @apply py-10; }
+.section-title { @apply text-2xl font-semibold mb-4; }
+.navbar { @apply sticky top-0 backdrop-blur bg-black/20 border-b border-white/10 z-20; }

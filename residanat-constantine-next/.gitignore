@@ -1,0 +1,17 @@
+# Node
+node_modules
+.next
+out
+dist
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+
+# Supabase
+supabase/.branches
+supabase/.temp
+
+# Vercel
+.vercel

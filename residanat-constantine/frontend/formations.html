@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formations - Résidanat Constantine</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/api.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/courses.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="logo">🎓</span> Résidanat Constantine</a>
+      <nav class="menu" id="menu">
+        <a href="index.html">Accueil</a>
+        <a href="formations.html" class="active">Formations</a>
+        <a href="qcm.html">QCM</a>
+        <a href="contact.html">Contact</a>
+        <a href="dashboard.html" id="adminLink" class="d-none">Admin</a>
+      </nav>
+      <div class="actions">
+        <button id="themeToggle" class="icon-btn">🌓</button>
+        <a href="login.html" id="loginLink" class="btn btn-outline">Connexion</a>
+        <div id="userMenu" class="user-menu d-none">
+          <span id="userName"></span>
+          <div class="dropdown">
+            <a href="profil.html">Profil</a>
+            <button id="logoutBtn" class="link danger">Déconnexion</button>
+          </div>
+        </div>
+        <button id="burger" class="icon-btn burger">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Nos formations</h1>
+      <p>Découvrez le catalogue complet et inscrivez-vous en un clic.</p>
+      <div class="filters">
+        <input id="search" type="search" placeholder="Rechercher...">
+        <select id="category">
+          <option value="">Toutes les catégories</option>
+          <option value="medecine">Médecine</option>
+          <option value="chirurgie">Chirurgie</option>
+          <option value="pediatrie">Pédiatrie</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div id="coursesList" class="grid-3"></div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="brand"><span class="logo">🎓</span> Résidanat Constantine</div>
+      <div>© 2025</div>
+    </div>
+  </footer>
+</body>
+</html>

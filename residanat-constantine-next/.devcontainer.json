@@ -1,0 +1,16 @@
+{
+  "name": "Résidanat Constantine",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "postCreateCommand": "npm i -g pnpm supabase && pnpm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
+        "supabase.vscode-supabase"
+      ]
+    }
+  },
+  "forwardPorts": [4000]
+}

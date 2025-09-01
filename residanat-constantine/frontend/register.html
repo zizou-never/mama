@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inscription - Résidanat Constantine</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/api.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/auth.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="logo">🎓</span> Résidanat Constantine</a>
+      <nav class="menu" id="menu">
+        <a href="index.html">Accueil</a>
+        <a href="formations.html">Formations</a>
+        <a href="qcm.html">QCM</a>
+        <a href="contact.html">Contact</a>
+        <a href="dashboard.html" id="adminLink" class="d-none">Admin</a>
+      </nav>
+      <div class="actions">
+        <button id="themeToggle" class="icon-btn">🌓</button>
+        <button id="burger" class="icon-btn burger">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="container section narrow">
+    <div class="card">
+      <h1>Créer un compte</h1>
+      <form id="registerForm" class="form">
+        <label>Nom complet<input type="text" id="name" required></label>
+        <label>Email<input type="email" id="email" required></label>
+        <label>Mot de passe<input type="password" id="password" required></label>
+        <button class="btn" type="submit">S'inscrire</button>
+      </form>
+      <p class="muted">Déjà inscrit ? <a href="login.html">Se connecter</a></p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="brand"><span class="logo">🎓</span> Résidanat Constantine</div>
+      <div>© 2025</div>
+    </div>
+  </footer>
+</body>
+</html>

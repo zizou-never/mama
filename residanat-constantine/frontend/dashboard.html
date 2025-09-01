@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin - Résidanat Constantine</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="js/api.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/dashboard.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="logo">🎓</span> Résidanat Constantine</a>
+      <nav class="menu" id="menu">
+        <a href="index.html">Accueil</a>
+        <a href="formations.html">Formations</a>
+        <a href="qcm.html">QCM</a>
+        <a href="contact.html">Contact</a>
+        <a href="dashboard.html" class="active">Admin</a>
+      </nav>
+      <div class="actions">
+        <button id="themeToggle" class="icon-btn">🌓</button>
+        <a href="login.html" id="loginLink" class="btn btn-outline">Connexion</a>
+        <div id="userMenu" class="user-menu d-none">
+          <span id="userName"></span>
+          <div class="dropdown">
+            <a href="profil.html">Profil</a>
+            <button id="logoutBtn" class="link danger">Déconnexion</button>
+          </div>
+        </div>
+        <button id="burger" class="icon-btn burger">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="container section">
+    <h1>Tableau de bord</h1>
+    <div class="grid-4" id="statCards"></div>
+    <div class="grid-2 mt-24">
+      <canvas id="chart1"></canvas>
+      <canvas id="chart2"></canvas>
+    </div>
+
+    <div class="mt-24 grid-2">
+      <div class="card">
+        <h3>Créer un cours</h3>
+        <form id="courseForm" class="form">
+          <label>Titre<input id="cTitle" required></label>
+          <label>Description<textarea id="cDesc" rows="3" required></textarea></label>
+          <label>Catégorie
+            <select id="cCat">
+              <option value="medecine">Médecine</option>
+              <option value="chirurgie">Chirurgie</option>
+              <option value="pediatrie">Pédiatrie</option>
+            </select>
+          </label>
+          <label>Prix<input id="cPrice" type="number" value="15000"></label>
+          <label>Heures<input id="cHours" type="number" value="40"></label>
+          <label>Image URL<input id="cImage"></label>
+          <button class="btn" type="submit">Créer</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>Liste des cours</h3>
+        <div id="adminCourses"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="brand"><span class="logo">🎓</span> Résidanat Constantine</div>
+      <div>© 2025</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Résidanat Constantine - Préparation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:,">
+  <script defer src="js/api.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="logo">🎓</span> Résidanat Constantine</a>
+      <nav class="menu" id="menu">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="formations.html">Formations</a>
+        <a href="qcm.html">QCM</a>
+        <a href="contact.html">Contact</a>
+        <a href="dashboard.html" id="adminLink" class="d-none">Admin</a>
+      </nav>
+      <div class="actions">
+        <button id="themeToggle" class="icon-btn" title="Thème">🌓</button>
+        <a href="login.html" id="loginLink" class="btn btn-outline">Connexion</a>
+        <div id="userMenu" class="user-menu d-none">
+          <span id="userName"></span>
+          <div class="dropdown">
+            <a href="profil.html">Profil</a>
+            <button id="logoutBtn" class="link danger">Déconnexion</button>
+          </div>
+        </div>
+        <button id="burger" class="icon-btn burger">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>Réussis ton résidanat avec une préparation d'excellence</h1>
+        <p>Formations ciblées, banque de QCM, simulateur d'examen, et accompagnement par des experts.</p>
+        <div class="cta">
+          <a href="formations.html" class="btn">Découvrir les formations</a>
+          <a href="qcm.html" class="btn btn-soft">Commencer les QCM</a>
+        </div>
+        <div class="badges">
+          <span class="badge">+92% réussite</span>
+          <span class="badge">+1200 QCM</span>
+          <span class="badge">+200 h de cours</span>
+        </div>
+      </div>
+      <div class="hero-card glass">
+        <h3>Statistiques</h3>
+        <div class="stats">
+          <div><strong id="statStudents">—</strong><span>Étudiants</span></div>
+          <div><strong id="statCourses">—</strong><span>Formations</span></div>
+          <div><strong id="statQcm">—</strong><span>QCM</span></div>
+          <div><strong id="statEnroll">—</strong><span>Inscriptions</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="section-title">Pourquoi nous choisir</h2>
+    <div class="grid-3">
+      <div class="card feature">
+        <div class="icon">📘</div>
+        <h3>Cours complets</h3>
+        <p>Programme conforme au concours avec fiches, cas cliniques et protocoles.</p>
+      </div>
+      <div class="card feature">
+        <div class="icon">🧑‍🏫</div>
+        <h3>Experts dédiés</h3>
+        <p>Encadrement par des professeurs et résidents seniors de Constantine.</p>
+      </div>
+      <div class="card feature">
+        <div class="icon">📝</div>
+        <h3>QCM & Simulations</h3>
+        <p>Entraînement intensif avec corrections détaillées et suivi de performance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2 class="section-title">Formations populaires</h2>
+      <div id="featured-courses" class="grid-3"></div>
+      <div class="center mt-24">
+        <a href="formations.html" class="btn">Voir toutes les formations</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand"><span class="logo">🎓</span> Résidanat Constantine</div>
+        <p>La référence pour préparer et réussir le résidanat à Constantine.</p>
+      </div>
+      <div>
+        <h4>Liens</h4>
+        <ul>
+          <li><a href="formations.html">Formations</a></li>
+          <li><a href="qcm.html">QCM</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Université de Constantine, Algérie</li>
+          <li>contact@residanat-constantine.dz</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2025 Résidanat Constantine</div>
+  </footer>
+</body>
+</html>
