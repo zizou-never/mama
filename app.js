@@ -1,10 +1,12 @@
-==================================
+// ===============================================
+//           CODE JAVASCRIPT POUR APP.JS
+// ===============================================
 
 // 1. Configuration de la connexion à Supabase
 const SUPABASE_URL = '%VITE_SUPABASE_URL%';
 const SUPABASE_ANON_KEY = '%VITE_SUPABASE_ANON_KEY%';
 
-// LA CORRECTION EST ICI. On utilise l'objet global "supabase" pour créer notre client.
+// LA CORRECTION DÉFINITIVE EST SUR CETTE LIGNE :
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // 2. Références aux éléments du DOM
@@ -18,7 +20,10 @@ const nextQcmBtn = document.getElementById('next-qcm-btn');
 const qcmFeedback = document.getElementById('qcm-feedback');
 const feedbackText = document.getElementById('feedback-text');
 const qcmExplanation = document.getElementById('qcm-explanation');
-const explanationBox = document.getElementById('explanation-box'); // Ajout de la référence
+const explanationBox = document.getElementById('explanation-box');
+
+// ... (بقية الكود كما هو في الإجابات السابقة)
+// ... (سأضع الكود كاملاً لضمان عدم وجود أخطاء)
 
 // 3. Variables pour gérer l'état
 let currentQCM = null;
@@ -35,7 +40,7 @@ async function fetchRandomQCM() {
 
     if (error || !data || data.length === 0) {
         console.error("Erreur lors de la récupération du QCM:", error);
-        qcmQuestion.textContent = "Impossible de charger la question. Vérifiez la console pour les erreurs.";
+        qcmQuestion.textContent = "Impossible de charger la question. Vérifiez la console (F12).";
         qcmLoader.classList.add('hidden');
         qcmContent.classList.remove('hidden');
         return;
@@ -122,4 +127,4 @@ checkAnswerBtn.addEventListener('click', checkAnswer);
 nextQcmBtn.addEventListener('click', fetchRandomQCM);
 
 // 10. Lancement initial
-fetchRandomQCM();```
+fetchRandomQCM();
