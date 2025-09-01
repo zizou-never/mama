@@ -1,14 +1,14 @@
 // ===============================================
-//           CODE FINAL ET CORRIGÉ POUR APP.JS
+//           VERSION DE TEST AVEC LES CLÉS DIRECTES
 // ===============================================
 
-// 1. Configuration de la connexion à Supabase
-const SUPABASE_URL = '%VITE_SUPABASE_URL%';
-const SUPABASE_ANON_KEY = '%VITE_SUPABASE_ANON_KEY%';
+// 1. Configuration de la connexion à Supabase avec les clés directes
+const supabaseUrl = "https://xfpkiowdevrrhsaundrz.supabase.co";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmcGtpb3dkZXZycmhzYXVuZHJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3Mjk2MDYsImV4cCI6MjA3MjMwNTYwNn0.Lqqyo1asUKQl5AK9AElS1xwlAjLVG9uP20z2lr_wzn8";
 
-// LA CORRECTION DÉFINITIVE EST SUR CETTE LIGNE :
-// On utilise l'objet global "supabase" (fourni par la bibliothèque) pour créer notre client.
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// On utilise les variables ci-dessus pour créer le client.
+// Note : Le bug de syntaxe est aussi corrigé ici.
+const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
 // 2. Références aux éléments du DOM
 const qcmLoader = document.getElementById('qcm-loader');
@@ -38,7 +38,7 @@ async function fetchRandomQCM() {
 
                     if (error || !data || data.length === 0) {
                             console.error("Erreur lors de la récupération du QCM:", error);
-                                    qcmQuestion.textContent = "Impossible de charger la question. La base de données est peut-être vide ou une erreur est survenue.";
+                                    qcmQuestion.textContent = "Impossible de charger la question. Vérifiez la console (F12).";
                                             qcmLoader.classList.add('hidden');
                                                     qcmContent.classList.remove('hidden');
                                                             return;
