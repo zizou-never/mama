@@ -1,6 +1,4 @@
-// ===============================================
-//           CODE FINAL ET CORRIGÉ
-// ===============================================
+==================================
 
 // 1. Configuration de la connexion à Supabase
 const SUPABASE_URL = '%VITE_SUPABASE_URL%';
@@ -20,6 +18,7 @@ const nextQcmBtn = document.getElementById('next-qcm-btn');
 const qcmFeedback = document.getElementById('qcm-feedback');
 const feedbackText = document.getElementById('feedback-text');
 const qcmExplanation = document.getElementById('qcm-explanation');
+const explanationBox = document.getElementById('explanation-box'); // Ajout de la référence
 
 // 3. Variables pour gérer l'état
 let currentQCM = null;
@@ -88,7 +87,7 @@ function checkAnswer() {
     feedbackText.textContent = correct ? "Félicitations ! C'est la bonne réponse." : `Désolé, la bonne réponse était : ${currentQCM.correct_answer}`;
     
     if (currentQCM.explanation) {
-        document.getElementById('explanation-box').classList.remove('hidden');
+        explanationBox.classList.remove('hidden');
         qcmExplanation.textContent = currentQCM.explanation;
     }
 
@@ -113,8 +112,8 @@ function resetState() {
     checkAnswerBtn.disabled = true;
     nextQcmBtn.classList.add('hidden');
     qcmFeedback.classList.add('hidden');
-    if (document.getElementById('explanation-box')) {
-        document.getElementById('explanation-box').classList.add('hidden');
+    if (explanationBox) {
+        explanationBox.classList.add('hidden');
     }
 }
 
@@ -123,4 +122,4 @@ checkAnswerBtn.addEventListener('click', checkAnswer);
 nextQcmBtn.addEventListener('click', fetchRandomQCM);
 
 // 10. Lancement initial
-fetchRandomQCM();
+fetchRandomQCM();```
