@@ -1,6 +1,7 @@
 // ===============================================
-//           CODE JAVASCRIPT FINAL POUR APP.JS
+//         VERSION DE VÉRIFICATION - 2 SEPTEMBRE
 // ===============================================
+console.log("VERSION CORRIGÉE DU FICHIER APP.JS - Le script a démarré !");
 
 // 1. Configuration de la connexion à Supabase
 const SUPABASE_URL = '%VITE_SUPABASE_URL%';
@@ -124,4 +125,36 @@ checkAnswerBtn.addEventListener('click', checkAnswer);
 nextQcmBtn.addEventListener('click', fetchRandomQCM);
 
 // 10. Lancement initial
-fetchRandomQCM();
+fetchRandomQCM();```
+
+#### الخطوة الثانية: الحفظ والدفع إلى GitHub
+
+1.  **احفظ** ملف `app.js` جيدًا.
+2.  افتح الـ **terminal** في مجلد مشروعك.
+3.  نفذ هذه الأوامر الثلاثة بالترتيب، واحدًا تلو الآخر:
+
+    ```bash
+    git add .
+    ```
+    (هذا يضيف كل الملفات المعدلة)
+
+    ```bash
+    git commit -m "Test: Ajout de la version de vérification de app.js"
+    ```
+    (هذا يحفظ التغييرات مع رسالة واضحة)
+
+    ```bash
+    git push origin main
+    ```    (هذا يرفع التغييرات إلى GitHub)
+
+#### الخطوة الثالثة: التحقق النهائي
+
+1.  انتظر دقيقة حتى ينتهي Vercel من إعادة النشر.
+2.  افتح موقعك.
+3.  افتح الـ Console (F12).
+
+**الآن، انظر إلى أول سطر في الـ Console.**
+*   **إذا رأيت الرسالة:** `"VERSION CORRIGÉE DU FICHIER APP.JS - Le script a démarré !"`، فهذا يعني أننا نجحنا! والخطأ القديم سيختفي، ويجب أن يعمل الموقع.
+*   **إذا لم تر هذه الرسالة**، واستمر الخطأ القديم في الظهور، فهذا يعني أن أوامر `git` لم يتم تنفيذها في المجلد الصحيح، وأن الملف القديم لا يزال على GitHub.
+
+أنا واثق جدًا أن هذه هي الخطوة الأخيرة. هيا بنا ننجزها.
