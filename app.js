@@ -1,7 +1,6 @@
 const supabaseUrl = "https://xfpkiowdevrrhsaundrz.supabase.co";
-const supabaseAnonKey = "CLE_API";
-const supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
-
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmcGtpb3dkZXZycmhzYXVuZHJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3Mjk2MDYsImV4cCI6MjA3MjMwNTYwNn0.Lqqyo1asUKQl5AK9AElS1xwlAjLVG9uP20z2lr_wzn8";
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const loadingSection = document.getElementById('loading-section');
 const contentSection = document.getElementById('content-section');
 const moduleTag = document.getElementById('module-tag');
