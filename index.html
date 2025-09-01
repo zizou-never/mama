@@ -2,54 +2,62 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Préparation Résidanat Constantine</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="logo">Prépa<span>Résidanat</span></div>
-            <p>Votre plateforme N°1 pour la préparation à l'examen de spécialité.</p>
-        </header>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Plateforme de QCM</title>
+                <link rel="icon" href="data:,">
+                    <link rel="stylesheet" href="style.css">
+                    </head>
+                    <body>
+                        <div class="container">
+                                <header>
+                                            <h1>📚 Plateforme de QCM</h1>
+                                                        <p>Testez vos connaissances avec nos questions aléatoires</p>
+                                                                </header>
 
-        <main class="qcm-card">
-            <div id="qcm-loader" class="loader">Chargement de la question...</div>
-            
-            <div id="qcm-content" class="hidden">
-                <div class="qcm-header">
-                    <span id="qcm-module" class="module-tag">Module</span>
-                    <h2 id="qcm-question">Question text will appear here.</h2>
-                </div>
+                                                                        <main>
+                                                                                    <div id="qcm-loader" class="loader">
+                                                                                                    <div class="spinner"></div>
+                                                                                                                    <p>Chargement de la question...</p>
+                                                                                                                                </div>
 
-                <div id="qcm-options" class="options-grid">
-                    <!-- Les options seront générées par JS ici -->
-                </div>
-                
-                <div class="qcm-actions">
-                    <button id="check-answer-btn">Vérifier ma réponse</button>
-                    <button id="next-qcm-btn" class="hidden">Question suivante</button>
-                </div>
+                                                                                                                                            <div id="qcm-content" class="hidden">
+                                                                                                                                                            <div class="qcm-header">
+                                                                                                                                                                                <span id="qcm-module" class="module-tag">Module</span>
+                                                                                                                                                                                                    <h2 id="qcm-question">Question ici...</h2>
+                                                                                                                                                                                                                    </div>
 
-                <div id="qcm-feedback" class="feedback hidden">
-                    <p id="feedback-text"></p>
-                    <div id="explanation-box" class="explanation">
-                        <h4>Explication :</h4>
-                        <p id="qcm-explanation"></p>
-                    </div>
-                </div>
-            </div>
-        </main>
+                                                                                                                                                                                                                                    <div id="qcm-options" class="options-container">
+                                                                                                                                                                                                                                                        <!-- Les options seront ajoutées dynamiquement -->
+                                                                                                                                                                                                                                                                        </div>
 
-        <footer>
-            <p>&copy; 2025 - Développé pour les futurs résidents de Constantine.</p>
-        </footer>
-    </div>
+                                                                                                                                                                                                                                                                                        <div class="actions">
+                                                                                                                                                                                                                                                                                                            <button id="check-answer-btn" class="btn btn-primary" disabled>
+                                                                                                                                                                                                                                                                                                                                    Vérifier la réponse
+                                                                                                                                                                                                                                                                                                                                                        </button>
+                                                                                                                                                                                                                                                                                                                                                                            <button id="next-qcm-btn" class="btn btn-secondary hidden">
+                                                                                                                                                                                                                                                                                                                                                                                                    Question suivante →
+                                                                                                                                                                                                                                                                                                                                                                                                                        </button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <script src="app.js"></script>
-</body>
-</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div id="qcm-feedback" class="feedback hidden">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <p id="feedback-text"></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div id="explanation-box" class="explanation hidden">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <h4>📖 Explication:</h4>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p id="qcm-explanation"></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div id="error-message" class="error-message hidden"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </main>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <footer>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <p>Powered by Supabase & Vercel</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </footer>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <!-- Inclure Supabase JS -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <script src="app.js"></script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </body>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </html>
