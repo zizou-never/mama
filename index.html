@@ -3,457 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCM Interactif</title>
+    <title>Plateforme QCM Interactive</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 90%;
-            max-width: 700px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .header h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        
-        .header p {
-            color: #7f8c8d;
-            font-size: 16px;
-        }
-        
-        .module-tag {
-            display: inline-block;
-            background-color: #e3f2fd;
-            color: #1565c0;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        
-        .question {
-            font-size: 20px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            line-height: 1.4;
-        }
-        
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-        
-        .option-btn {
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            background-color: #f8f9fa;
-            cursor: pointer;
-            text-align: left;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .option-btn:hover {
-            background-color: #e8f4fc;
-            border-color: #2196f3;
-        }
-        
-        .option-btn.selected {
-            background-color: #2196f3;
-            color: white;
-            border-color: #2196f3;
-        }
-        
-        .option-btn.correct {
-            background-color: #4caf50;
-            color: white;
-            border-color: #4caf50;
-        }
-        
-        .option-btn.incorrect {
-            background-color: #f44336;
-            color: white;
-            border-color: #f44336;
-        }
-        
-        .buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        #check-answer-btn {
-            background-color: #2196f3;
-            color: white;
-        }
-        
-        #check-answer-btn:hover:not(:disabled) {
-            background-color: #0b7dda;
-        }
-        
-        #check-answer-btn:disabled {
-            background-color: #b0bec5;
-            cursor: not-allowed;
-        }
-        
-        #next-qcm-btn {
-            background-color: #4caf50;
-            color: white;
-        }
-        
-        #next-qcm-btn:hover {
-            background-color: #388e3c;
-        }
-        
-        .feedback {
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .feedback.correct {
-            background-color: #e8f5e9;
-            border: 1px solid #4caf50;
-            color: #2e7d32;
-        }
-        
-        .feedback.incorrect {
-            background-color: #ffebee;
-            border: 1px solid #f44336;
-            color: #c62828;
-        }
-        
-        .explanation-box {
-            background-color: #fff3e0;
-            border: 1px solid #ff9800;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-        }
-        
-        .explanation-box h3 {
-            color: #ef6c00;
-            margin-bottom: 10px;
-        }
-        
-        .loader {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 20px;
-            padding: 40px 0;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #2196f3;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-                width: 95%;
-            }
-            
-            .question {
-                font-size: 18px;
-            }
-            
-            .buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            button {
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>QCM Interactif</h1>
-            <p>Testez vos connaissances avec notre sélection de questions</p>
+            <h1>Plateforme QCM Interactive</h1>
+            <p>Testez vos connaissances avec nos questions aléatoires</p>
         </div>
         
-        <div id="qcm-loader" class="loader">
+        <div id="loading-section" class="loading-section">
             <div class="spinner"></div>
             <p>Chargement de la question...</p>
         </div>
         
-        <div id="qcm-content" class="hidden">
-            <div id="qcm-module" class="module-tag">Module</div>
-            <div id="qcm-question" class="question"></div>
+        <div id="content-section" class="content-section">
+            <div class="module-tag" id="module-tag">Module</div>
             
-            <div id="qcm-options" class="options"></div>
-            
-            <div id="qcm-feedback" class="feedback hidden">
-                <span id="feedback-text"></span>
+            <div class="question-container">
+                <div class="question-title" id="question-title">Question ici...</div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options seront générées dynamiquement -->
+                </div>
             </div>
             
-            <div id="explanation-box" class="explanation-box hidden">
-                <h3>Explication</h3>
-                <div id="qcm-explanation"></div>
+            <div class="controls">
+                <button id="check-answer-btn" class="btn btn-primary" disabled>Vérifier la réponse</button>
+                <button id="next-question-btn" class="btn btn-secondary" style="display: none;">Question suivante</button>
             </div>
             
-            <div class="buttons">
-                <button id="check-answer-btn" disabled>Vérifier la réponse</button>
-                <button id="next-qcm-btn" class="hidden">Question suivante</button>
+            <div id="feedback-section" class="feedback-section">
+                <div class="feedback-text" id="feedback-text"></div>
+            </div>
+            
+            <div id="explanation-section" class="explanation-section">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Explication :
+                </div>
+                <div class="explanation-text" id="explanation-text"></div>
             </div>
         </div>
     </div>
 
-    <script>
-        // ===============================================
-        //           VERSION CORRIGÉE
-        // ===============================================
-
-        // 1. Configuration avec les clés directes qui fonctionnent
-        const supabaseUrl = "https://xfpkiowdevrrhsaundrz.supabase.co";
-        const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmcGtpb3dkZXZycmhzYXVuZHJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3Mjk2MDYsImV4cCI6MjA3MjMwNTYwNn0.Lqqyo1asUKQl5AK9AElS1xwlAjLVG9uP20z2lr_wzn8";
-
-        // Initialisation de Supabase
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
-
-        // 2. Références à TOUS les éléments du DOM
-        const qcmLoader = document.getElementById('qcm-loader');
-        const qcmContent = document.getElementById('qcm-content');
-        const qcmModule = document.getElementById('qcm-module');
-        const qcmQuestion = document.getElementById('qcm-question');
-        const qcmOptions = document.getElementById('qcm-options');
-        const checkAnswerBtn = document.getElementById('check-answer-btn');
-        const nextQcmBtn = document.getElementById('next-qcm-btn');
-        const qcmFeedback = document.getElementById('qcm-feedback');
-        const feedbackText = document.getElementById('feedback-text');
-        const qcmExplanation = document.getElementById('qcm-explanation');
-        const explanationBox = document.getElementById('explanation-box');
-
-        // 3. Variables pour gérer l'état
-        let currentQCM = null;
-        let selectedOption = null;
-        let isAnswerChecked = false;
-
-        // 4. Fonction pour récupérer un QCM aléatoire
-        async function fetchRandomQCM() {
-            qcmLoader.classList.remove('hidden');
-            qcmContent.classList.add('hidden');
-            resetState();
-
-            try {
-                // Récupérer le nombre total de questions
-                const { count, error: countError } = await supabase
-                    .from('qcm')
-                    .select('*', { count: 'exact', head: true });
-                
-                if (countError) throw countError;
-                
-                // Sélectionner une question aléatoire
-                const randomIndex = Math.floor(Math.random() * count);
-                
-                const { data, error } = await supabase
-                    .from('qcm')
-                    .select('*')
-                    .range(randomIndex, randomIndex)
-                    .single();
-                
-                if (error) throw error;
-                
-                currentQCM = data;
-                displayQCM(currentQCM);
-            } catch (error) {
-                console.error("Erreur lors du chargement:", error);
-                // Solution de repli: utiliser des données de démonstration
-                useDemoData();
-            }
-        }
-
-        // Fonction de repli avec des données de démonstration
-        function useDemoData() {
-            const demoQuestions = [
-                {
-                    module: "JavaScript",
-                    question: "Quelle méthode utilise-t-on pour ajouter un élément à la fin d'un tableau?",
-                    options: ["push()", "pop()", "shift()", "unshift()"],
-                    correct_answer: "push()",
-                    explanation: "La méthode push() ajoute un ou plusieurs éléments à la fin d'un tableau et retourne la nouvelle longueur du tableau."
-                },
-                {
-                    module: "HTML",
-                    question: "Quelle balise est utilisée pour créer un lien hypertexte?",
-                    options: ["<link>", "<a>", "<href>", "<url>"],
-                    correct_answer: "<a>",
-                    explanation: "La balise <a> (anchor) est utilisée pour créer des liens hypertextes grâce à l'attribut href."
-                },
-                {
-                    module: "CSS",
-                    question: "Quelle propriété utilise-t-on pour changer la couleur du texte?",
-                    options: ["text-color", "font-color", "color", "text-style"],
-                    correct_answer: "color",
-                    explanation: "La propriété 'color' en CSS est utilisée pour définir la couleur du texte d'un élément."
-                }
-            ];
-            
-            const randomIndex = Math.floor(Math.random() * demoQuestions.length);
-            currentQCM = demoQuestions[randomIndex];
-            displayQCM(currentQCM);
-        }
-
-        // 5. Fonction pour afficher le QCM AVEC LES OPTIONS
-        function displayQCM(qcm) {
-            qcmModule.textContent = qcm.module;
-            qcmQuestion.textContent = qcm.question;
-            
-            qcmOptions.innerHTML = '';
-            
-            // Vérifier si les options sont stockées sous forme de chaîne JSON ou déjà un tableau
-            let optionsArray = [];
-            if (Array.isArray(qcm.options)) {
-                optionsArray = qcm.options;
-            } else if (typeof qcm.options === 'string') {
-                try {
-                    optionsArray = JSON.parse(qcm.options);
-                } catch (e) {
-                    // Si le parsing échoue, on suppose que c'est une chaîne simple
-                    optionsArray = [qcm.options];
-                }
-            } else {
-                optionsArray = ["Option 1", "Option 2", "Option 3", "Option 4"];
-            }
-            
-            optionsArray.forEach(optionText => {
-                const button = document.createElement('button');
-                button.className = 'option-btn';
-                button.textContent = optionText;
-                button.addEventListener('click', () => selectOption(button, optionText));
-                qcmOptions.appendChild(button);
-            });
-
-            qcmLoader.classList.add('hidden');
-            qcmContent.classList.remove('hidden');
-        }
-
-        // 6. Fonction pour gérer la sélection d'une option
-        function selectOption(button, optionText) {
-            if (isAnswerChecked) return;
-            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-            button.classList.add('selected');
-            selectedOption = optionText;
-            checkAnswerBtn.disabled = false;
-        }
-
-        // 7. Fonction pour vérifier la réponse
-        function checkAnswer() {
-            if (!selectedOption || !currentQCM) return;
-            
-            isAnswerChecked = true;
-            checkAnswerBtn.disabled = true;
-
-            const correct = selectedOption === currentQCM.correct_answer;
-
-            qcmFeedback.classList.remove('hidden');
-            qcmFeedback.classList.toggle('correct', correct);
-            qcmFeedback.classList.toggle('incorrect', !correct);
-            feedbackText.textContent = correct ? 
-                "Félicitations ! C'est la bonne réponse." : 
-                `Désolé, la bonne réponse était : ${currentQCM.correct_answer}`;
-            
-            if (currentQCM.explanation) {
-                explanationBox.classList.remove('hidden');
-                qcmExplanation.textContent = currentQCM.explanation;
-            }
-
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                if (btn.textContent === currentQCM.correct_answer) {
-                    btn.classList.add('correct');
-                } else if (btn.classList.contains('selected')) {
-                    btn.classList.add('incorrect');
-                }
-                btn.disabled = true;
-            });
-
-            nextQcmBtn.classList.remove('hidden');
-        }
-
-        // 8. Fonction pour réinitialiser l'état pour la prochaine question
-        function resetState() {
-            selectedOption = null;
-            isAnswerChecked = false;
-            
-            checkAnswerBtn.disabled = true;
-            checkAnswerBtn.classList.remove('hidden');
-            nextQcmBtn.classList.add('hidden');
-            qcmFeedback.classList.add('hidden');
-            explanationBox.classList.add('hidden');
-        }
-
-        // 9. Ajout des écouteurs d'événements
-        checkAnswerBtn.addEventListener('click', checkAnswer);
-        nextQcmBtn.addEventListener('click', fetchRandomQCM);
-
-        // 10. Lancement initial
-        document.addEventListener('DOMContentLoaded', function() {
-            fetchRandomQCM();
-        });
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>

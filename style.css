@@ -1,0 +1,234 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #333;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: #666;
+    font-size: 1.1em;
+}
+
+.loading-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.content-section {
+    display: none;
+}
+
+.module-tag {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.question-container {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.question-title {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.options-container {
+    display: grid;
+    gap: 15px;
+}
+
+.option-button {
+    background-color: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.option-button:hover {
+    border-color: #3498db;
+    background-color: #f0f8ff;
+}
+
+.option-button.selected {
+    background-color: #3498db;
+    color: white;
+    border-color: #2980b9;
+}
+
+.option-button.correct {
+    background-color: #27ae60;
+    color: white;
+    border-color: #229954;
+}
+
+.option-button.incorrect {
+    background-color: #e74c3c;
+    color: white;
+    border-color: #c0392b;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1em;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #2980b9;
+}
+
+.btn-secondary {
+    background-color: #27ae60;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #229954;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.feedback-section {
+    background-color: #f0f8ff;
+    border-left: 4px solid #3498db;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 0 8px 8px 0;
+    display: none;
+}
+
+.feedback-section.show {
+    display: block;
+}
+
+.feedback-text {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.explanation-section {
+    background-color: #fff8e1;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 0 8px 8px 0;
+    display: none;
+}
+
+.explanation-section.show {
+    display: block;
+}
+
+.explanation-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.explanation-title i {
+    margin-right: 8px;
+}
+
+.explanation-text {
+    color: #555;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
